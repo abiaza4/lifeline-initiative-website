@@ -3,7 +3,7 @@ import { Leaf, Heart, BookOpen, AlertCircle } from 'lucide-react';
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background">
       {/* Hero Section */}
       <section
         className="relative py-20 md:py-32 bg-gradient-to-br from-white to-gray-50 overflow-hidden"
@@ -47,11 +47,11 @@ export default function Home() {
       </section>
 
       {/* About Section */}
-      <section className="py-16 md:py-20 bg-white">
+      <section className="py-16 md:py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center">About LISS</h2>
+          <h2 className="text-4xl font-bold text-foreground mb-12 text-center">About LISS</h2>
           <div className="max-w-3xl mx-auto text-center mb-8">
-            <p className="text-lg text-gray-700 mb-6">
+            <p className="text-lg text-foreground mb-6">
               Lifeline Initiative – South Sudan is a non-profit organization dedicated to improving the lives of vulnerable communities through Food Security, Health, Education, and GBV Prevention.
             </p>
             <Link
@@ -65,10 +65,10 @@ export default function Home() {
       </section>
 
       {/* Core Programs Section */}
-      <section className="py-16 md:py-20 bg-gray-50">
+      <section className="py-16 md:py-20 bg-muted/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4 text-center">Our Core Programs</h2>
-          <p className="text-lg text-gray-600 text-center mb-12 max-w-2xl mx-auto">
+          <h2 className="text-4xl font-bold text-foreground mb-4 text-center">Our Core Programs</h2>
+          <p className="text-lg text-muted-foreground text-center mb-12 max-w-2xl mx-auto">
             We work across four strategic areas to create lasting change
           </p>
 
@@ -100,12 +100,12 @@ export default function Home() {
                 <Link
                   key={program.slug}
                   href={`/programs/${program.slug}`}
-                  className="bg-white rounded-lg shadow p-6 hover:shadow-lg transition-all text-center group"
+                  className="bg-card border border-border rounded-lg shadow p-6 hover:shadow-lg transition-all text-center group"
                 >
                   <div className="w-16 h-16 bg-primary rounded-lg flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform">
-                    <Icon className="w-8 h-8 text-white" />
+                    <Icon className="w-8 h-8 text-primary-foreground" />
                   </div>
-                  <h3 className="font-bold text-gray-900 text-sm">{program.title}</h3>
+                  <h3 className="font-bold text-foreground text-sm">{program.title}</h3>
                 </Link>
               );
             })}
@@ -123,9 +123,9 @@ export default function Home() {
       </section>
 
       {/* Impact Section */}
-      <section className="py-16 md:py-20 bg-white">
+      <section className="py-16 md:py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-gray-900 mb-12 text-center">Our Impact</h2>
+          <h2 className="text-4xl font-bold text-foreground mb-12 text-center">Our Impact</h2>
           <div className="grid md:grid-cols-3 gap-8">
             {[
               { number: '25,000+', label: 'Households Supported', color: 'primary' },
@@ -160,7 +160,7 @@ export default function Home() {
       </section>
 
       {/* Get Involved Section */}
-      <section className="py-16 md:py-20 bg-secondary text-white">
+      <section className="py-16 md:py-20 bg-secondary text-secondary-foreground">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-4xl font-bold mb-12 text-center">Get Involved</h2>
           <p className="text-lg text-center mb-12 max-w-2xl mx-auto">
@@ -171,7 +171,7 @@ export default function Home() {
             <div className="text-center">
               <div className="text-5xl mb-4">🎯</div>
               <h3 className="text-2xl font-bold mb-4">Volunteer</h3>
-              <p className="mb-6 text-blue-100">Share your skills and time to help communities in need.</p>
+              <p className="mb-6 opacity-90">Share your skills and time to help communities in need.</p>
               <Link
                 href="/get-involved#volunteer"
                 className="bg-accent hover:bg-orange-500 text-white font-semibold py-2 px-6 rounded inline-block transition-colors"
@@ -183,7 +183,7 @@ export default function Home() {
             <div className="text-center">
               <div className="text-5xl mb-4">🤝</div>
               <h3 className="text-2xl font-bold mb-4">Partner With Us</h3>
-              <p className="mb-6 text-blue-100">Work with us on long-term initiatives to create lasting change.</p>
+              <p className="mb-6 opacity-90">Work with us on long-term initiatives to create lasting change.</p>
               <Link
                 href="/get-involved#partner"
                 className="bg-primary hover:bg-green-700 text-white font-semibold py-2 px-6 rounded inline-block transition-colors"
@@ -195,7 +195,7 @@ export default function Home() {
             <div className="text-center">
               <div className="text-5xl mb-4">💖</div>
               <h3 className="text-2xl font-bold mb-4">Donate Today</h3>
-              <p className="mb-6 text-blue-100">Your financial support enables us to expand our programs.</p>
+              <p className="mb-6 opacity-90">Your financial support enables us to expand our programs.</p>
               <Link
                 href="/donate"
                 className="bg-accent hover:bg-orange-500 text-white font-semibold py-2 px-6 rounded inline-block transition-colors"
@@ -208,10 +208,10 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 md:py-20 bg-gray-50">
+      <section className="py-16 md:py-20 bg-muted/50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-bold text-gray-900 mb-6">Ready to Make a Difference?</h2>
-          <p className="text-xl text-gray-600 mb-8">
+          <h2 className="text-4xl font-bold text-foreground mb-6">Ready to Make a Difference?</h2>
+          <p className="text-xl text-muted-foreground mb-8">
             Every contribution, no matter how small, helps us continue our mission to save lives and build futures.
           </p>
           <Link
