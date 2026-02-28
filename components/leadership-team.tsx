@@ -1,6 +1,7 @@
 'use client';
 
 import { Mail, Phone } from 'lucide-react';
+import Image from 'next/image';
 
 const leadershipTeam = [
   {
@@ -10,6 +11,7 @@ const leadershipTeam = [
     email: 'john.makuei@liss-southsudan.org',
     phone: '+211 929 328 421',
     bio: 'Healthcare specialist with 15+ years of experience in South Sudan',
+    image: '/team-1.jpg',
   },
   {
     id: 2,
@@ -18,6 +20,7 @@ const leadershipTeam = [
     email: 'grace.nyabol@liss-southsudan.org',
     phone: '+211 929 328 422',
     bio: 'Development expert focused on community empowerment and education',
+    image: '/team-2.jpg',
   },
   {
     id: 3,
@@ -26,6 +29,7 @@ const leadershipTeam = [
     email: 'peter.okonkwo@liss-southsudan.org',
     phone: '+211 929 328 423',
     bio: 'Operations and logistics specialist ensuring program effectiveness',
+    image: '/team-3.jpg',
   },
   {
     id: 4,
@@ -34,6 +38,7 @@ const leadershipTeam = [
     email: 'sarah.deng@liss-southsudan.org',
     phone: '+211 929 328 424',
     bio: 'Financial management expert with accountability expertise',
+    image: '/team-4.jpg',
   },
   {
     id: 5,
@@ -42,6 +47,7 @@ const leadershipTeam = [
     email: 'moses.adut@liss-southsudan.org',
     phone: '+211 929 328 425',
     bio: 'Public health specialist championing maternal and child health',
+    image: '/team-5.jpg',
   },
   {
     id: 6,
@@ -50,6 +56,7 @@ const leadershipTeam = [
     email: 'amina.hassan@liss-southsudan.org',
     phone: '+211 929 328 426',
     bio: 'Education advocate ensuring quality learning opportunities for all',
+    image: '/team-6.jpg',
   },
   {
     id: 7,
@@ -58,6 +65,7 @@ const leadershipTeam = [
     email: 'david.kur@liss-southsudan.org',
     phone: '+211 929 328 427',
     bio: 'Community mobilizer building grassroots support for LISS initiatives',
+    image: '/team-7.jpg',
   },
   {
     id: 8,
@@ -66,6 +74,7 @@ const leadershipTeam = [
     email: 'fatima.ali@liss-southsudan.org',
     phone: '+211 929 328 428',
     bio: 'Communications strategist amplifying LISS impact and reach',
+    image: '/team-8.jpg',
   },
   {
     id: 9,
@@ -74,6 +83,7 @@ const leadershipTeam = [
     email: 'samuel.musa@liss-southsudan.org',
     phone: '+211 929 328 429',
     bio: 'Monitoring and evaluation expert ensuring program quality and impact',
+    image: '/team-9.jpg',
   },
   {
     id: 10,
@@ -82,6 +92,7 @@ const leadershipTeam = [
     email: 'nadia.joseph@liss-southsudan.org',
     phone: '+211 929 328 430',
     bio: 'Gender-based violence specialist providing survivor support and prevention',
+    image: '/team-10.jpg',
   },
 ];
 
@@ -102,30 +113,43 @@ export function LeadershipTeam() {
           {leadershipTeam.map((leader) => (
             <div
               key={leader.id}
-              className="bg-card border border-border rounded-lg p-6 hover:shadow-lg transition-shadow"
+              className="bg-card border border-border rounded-lg overflow-hidden hover:shadow-lg transition-shadow"
             >
-              <div className="mb-4">
-                <h3 className="text-xl font-bold text-foreground">{leader.name}</h3>
-                <p className="text-sm font-semibold text-primary mt-1">{leader.position}</p>
+              {/* Profile Image */}
+              <div className="relative h-64 w-full overflow-hidden bg-muted">
+                <Image
+                  src={leader.image}
+                  alt={leader.name}
+                  fill
+                  className="object-cover"
+                />
               </div>
 
-              <p className="text-sm text-muted-foreground mb-4">{leader.bio}</p>
+              {/* Content */}
+              <div className="p-6">
+                <div className="mb-4">
+                  <h3 className="text-xl font-bold text-foreground">{leader.name}</h3>
+                  <p className="text-sm font-semibold text-primary mt-1">{leader.position}</p>
+                </div>
 
-              <div className="space-y-2 border-t border-border pt-4">
-                <a
-                  href={`mailto:${leader.email}`}
-                  className="flex items-center gap-2 text-sm text-foreground hover:text-primary transition-colors"
-                >
-                  <Mail className="w-4 h-4" />
-                  <span className="truncate">{leader.email}</span>
-                </a>
-                <a
-                  href={`tel:${leader.phone}`}
-                  className="flex items-center gap-2 text-sm text-foreground hover:text-primary transition-colors"
-                >
-                  <Phone className="w-4 h-4" />
-                  <span>{leader.phone}</span>
-                </a>
+                <p className="text-sm text-muted-foreground mb-4">{leader.bio}</p>
+
+                <div className="space-y-2 border-t border-border pt-4">
+                  <a
+                    href={`mailto:${leader.email}`}
+                    className="flex items-center gap-2 text-sm text-foreground hover:text-primary transition-colors"
+                  >
+                    <Mail className="w-4 h-4" />
+                    <span className="truncate">{leader.email}</span>
+                  </a>
+                  <a
+                    href={`tel:${leader.phone}`}
+                    className="flex items-center gap-2 text-sm text-foreground hover:text-primary transition-colors"
+                  >
+                    <Phone className="w-4 h-4" />
+                    <span>{leader.phone}</span>
+                  </a>
+                </div>
               </div>
             </div>
           ))}

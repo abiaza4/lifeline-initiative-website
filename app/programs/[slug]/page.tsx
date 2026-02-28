@@ -121,7 +121,7 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <Link
           href="/programs"
@@ -130,46 +130,26 @@ export default async function ProgramDetailPage({ params }: { params: Promise<{ 
           ← Back to Programs
         </Link>
 
-        <h1 className="text-4xl font-bold text-gray-900 mb-4">{program.title}</h1>
-        <p className="text-xl text-gray-600 mb-8">{program.description}</p>
+        <h1 className="text-4xl font-bold text-foreground mb-4">{program.title}</h1>
+        <p className="text-xl text-muted-foreground mb-8">{program.description}</p>
 
-        <div className="prose prose-lg max-w-none text-gray-700">
-          {program.content.split('\n').map((line: string, i: number) => {
-            if (line.includes('<h2>')) {
-              return (
-                <h2 key={i} className="text-2xl font-bold text-primary mt-8 mb-4">
-                  {line.replace(/<\/?h2>/g, '')}
-                </h2>
-              );
-            }
-            if (line.includes('<h3>')) {
-              return (
-                <h3 key={i} className="text-xl font-semibold text-gray-900 mt-6 mb-3">
-                  {line.replace(/<\/?h3>/g, '')}
-                </h3>
-              );
-            }
-            if (line.includes('<p>') || line.includes('<li>')) {
-              return null; // Rendered separately below
-            }
-            return null;
-          })}
+        <div className="prose prose-lg max-w-none text-foreground">
           <div
             dangerouslySetInnerHTML={{
               __html: program.content
-                .replace(/<h2>/g, '<h2 style="font-size: 1.875rem; font-weight: bold; color: #2D7D3D; margin-top: 2rem; margin-bottom: 1rem;">')
-                .replace(/<h3>/g, '<h3 style="font-size: 1.25rem; font-weight: 600; color: #1F5A7D; margin-top: 1.5rem; margin-bottom: 0.75rem;">')
-                .replace(/<p>/g, '<p style="color: #4B5563; margin-bottom: 1rem; line-height: 1.6;">')
+                .replace(/<h2>/g, '<h2 style="font-size: 1.875rem; font-weight: bold; color: var(--primary); margin-top: 2rem; margin-bottom: 1rem;">')
+                .replace(/<h3>/g, '<h3 style="font-size: 1.25rem; font-weight: 600; color: var(--secondary); margin-top: 1.5rem; margin-bottom: 0.75rem;">')
+                .replace(/<p>/g, '<p style="color: var(--foreground); margin-bottom: 1rem; line-height: 1.6;">')
                 .replace(/<ul>/g, '<ul style="list-style-type: disc; margin-left: 1.5rem; margin-bottom: 1rem;">')
-                .replace(/<li>/g, '<li style="color: #4B5563; margin-bottom: 0.5rem; line-height: 1.6;">')
+                .replace(/<li>/g, '<li style="color: var(--foreground); margin-bottom: 0.5rem; line-height: 1.6;">')
                 .replace(/<\/li>/g, '</li>'),
             }}
           />
         </div>
 
-        <div className="bg-green-50 border border-primary rounded-lg p-8 mt-12">
+        <div className="bg-muted/50 border border-border rounded-lg p-8 mt-12">
           <h3 className="text-xl font-bold text-primary mb-4">Support This Program</h3>
-          <p className="text-gray-700 mb-6">
+          <p className="text-muted-foreground mb-6">
             Your support helps us expand our reach and deepen our impact in communities across South Sudan.
           </p>
           <Link
