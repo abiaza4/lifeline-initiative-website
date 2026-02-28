@@ -1,0 +1,115 @@
+'use client';
+
+import Link from 'next/link';
+import { useState } from 'react';
+import { Menu, X } from 'lucide-react';
+import { usePathname } from 'next/navigation';
+import { LissLogo } from './logo';
+
+const navLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About Us' },
+  { href: '/programs', label: 'Programs' },
+  { href: '/projects', label: 'Projects' },
+  { href: '/get-involved', label: 'Get Involved' },
+  { href: '/news', label: 'News' },
+  { href: '/donate', label: 'Donate' },
+  { href: '/contact', label: 'Contact' },
+];
+
+export function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
+
+  const isActive = (href: string) => {
+    if (href === '/') return pathname === '/';
+    return pathname.startsWith(href);
+  };
+
+  return (
+    <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center py-4">
+          {/* Logo */}
+          <div className="flex-shrink-0">
+            <Link href="/" className="flex items-center gap-2">
+              <LissLogo />
+              <div className="hidden sm:block">
+                <div className="text-lg font-bold text-primary">LISS</div>
+                <div className="text-xs text-gray-600">Lifeline Initiative – South Sudan</div>
+              </div>
+            </Link>
+          </div>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center gap-8">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`text-sm font-medium transition-colors ${
+                  isActive(link.href)
+                    ? 'text-primary border-b-2 border-primary pb-1'
+                    : 'text-gray-700 hover:text-primary'
+                }`}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+
+          {/* Phone Number and Mobile Menu */}
+          <div className="flex items-center gap-4">
+            <a
+              href="tel:+211929328421"
+              className="hidden lg:block text-sm font-medium text-primary"
+            >
+              +211 929 328 421
+            </a>
+            
+            {/* Hamburger Menu Button */}
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="md:hidden p-2 rounded-lg hover:bg-gray-100"
+              aria-label="Toggle menu"
+            >
+              {isMenuOpen ? (
+                <X className="w-6 h-6 text-gray-700" />
+              ) : (
+                <Menu className="w-6 h-6 text-gray-700" />
+              )}
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Navigation Menu */}
+        {isMenuOpen && (
+          <nav className="md:hidden pb-4 border-t border-gray-200">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setIsMenuOpen(false)}
+                className={`block px-4 py-3 text-sm font-medium ${
+                  isActive(link.href)
+                    ? 'text-primary bg-green-50 border-l-4 border-primary'
+                    : 'text-gray-700 hover:bg-gray-50'
+                }`}
+              >
+                {link.label}
+              </Link>
+            ))}
+            <div className="px-4 py-3 border-t border-gray-200">
+              <a
+                href="tel:+211929328421"
+                className="text-sm font-medium text-primary"
+              >
+                +211 929 328 421
+              </a>
+            </div>
+          </nav>
+        )}
+      </div>
+    </header>
+  );
+}
