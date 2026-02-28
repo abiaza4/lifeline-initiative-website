@@ -102,8 +102,9 @@ export async function generateStaticParams() {
   }));
 }
 
-export function generateMetadata({ params }: { params: { slug: string } }) {
-  const program = programsData[params.slug];
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const program = programsData[slug];
   if (!program) return {};
   return {
     title: `${program.title} - LISS`,
@@ -111,8 +112,9 @@ export function generateMetadata({ params }: { params: { slug: string } }) {
   };
 }
 
-export default function ProgramDetailPage({ params }: { params: { slug: string } }) {
-  const program = programsData[params.slug];
+export default async function ProgramDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const program = programsData[slug];
 
   if (!program) {
     notFound();
