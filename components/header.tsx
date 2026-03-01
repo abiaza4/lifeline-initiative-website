@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, LogIn } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
 import { ThemeToggle } from './theme-toggle';
@@ -81,18 +81,28 @@ export function Header() {
             ))}
           </nav>
 
-          {/* Mobile Menu */}
-          <div className="flex items-center gap-4">
+          {/* Admin & Mobile Menu */}
+          <div className="flex items-center gap-2 md:gap-4">
+            {/* Admin Login Button */}
+            <Link
+              href="/admin/login"
+              className="hidden sm:flex items-center gap-1 text-xs md:text-sm font-medium text-foreground hover:text-primary transition-colors px-3 py-2 rounded hover:bg-muted/50"
+              title="Admin Dashboard"
+            >
+              <LogIn className="w-4 h-4" />
+              <span className="hidden lg:inline">Admin</span>
+            </Link>
+
             {/* Hamburger Menu Button */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="md:hidden p-2 rounded-lg hover:bg-gray-100"
+              className="md:hidden p-2 rounded-lg hover:bg-muted"
               aria-label="Toggle menu"
             >
               {isMenuOpen ? (
-                <X className="w-6 h-6 text-gray-700" />
+                <X className="w-6 h-6" />
               ) : (
-                <Menu className="w-6 h-6 text-gray-700" />
+                <Menu className="w-6 h-6" />
               )}
             </button>
           </div>
@@ -100,7 +110,7 @@ export function Header() {
 
         {/* Mobile Navigation Menu */}
         {isMenuOpen && (
-          <nav className="md:hidden pb-4 border-t border-gray-200">
+          <nav className="md:hidden pb-4 border-t border-border">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -108,14 +118,24 @@ export function Header() {
                 onClick={() => setIsMenuOpen(false)}
                 className={`block px-4 py-3 text-sm font-medium ${
                   isActive(link.href)
-                    ? 'text-primary bg-green-50 border-l-4 border-primary'
-                    : 'text-gray-700 hover:bg-gray-50'
+                    ? 'text-primary bg-muted border-l-4 border-primary'
+                    : 'text-foreground hover:bg-muted/50'
                 }`}
               >
                 {link.label}
               </Link>
             ))}
-            <div className="px-4 py-3 border-t border-gray-200">
+            <div className="px-4 py-3 border-t border-border">
+              <Link
+                href="/admin/login"
+                onClick={() => setIsMenuOpen(false)}
+                className="flex items-center gap-2 text-sm font-medium text-foreground hover:text-primary transition-colors"
+              >
+                <LogIn className="w-4 h-4" />
+                Admin Dashboard
+              </Link>
+            </div>
+            <div className="px-4 py-3 border-t border-border">
               <a
                 href="tel:+211929328421"
                 className="text-sm font-medium text-primary"

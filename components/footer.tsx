@@ -84,6 +84,11 @@ export function Footer() {
                     Our Programs
                   </Link>
                 </li>
+                <li>
+                  <Link prefetch={true} href="/admin/login" className="text-muted-foreground hover:text-primary transition-colors font-medium">
+                    Admin Login
+                  </Link>
+                </li>
               </ul>
             </div>
 
