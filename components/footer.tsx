@@ -16,17 +16,17 @@ export function Footer() {
               <p className="text-sm text-muted-foreground">Community Rooted, Locally Led</p>
             </div>
             <div>
-              <Link href="/get-involved#volunteer" className="bg-accent hover:bg-orange-500 text-white font-semibold py-2 px-6 rounded inline-block transition-colors">
+              <Link prefetch={true} href="/get-involved#volunteer" className="bg-accent hover:bg-orange-500 text-white font-semibold py-2 px-6 rounded inline-block transition-colors">
                 Volunteer
               </Link>
             </div>
             <div>
-              <Link href="/get-involved#partner" className="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-6 rounded inline-block transition-colors">
+              <Link prefetch={true} href="/get-involved#partner" className="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-6 rounded inline-block transition-colors">
                 Become a Partner
               </Link>
             </div>
             <div>
-              <Link href="/donate" className="bg-accent hover:bg-orange-500 text-white font-semibold py-2 px-6 rounded inline-block transition-colors">
+              <Link prefetch={true} href="/donate" className="bg-accent hover:bg-orange-500 text-white font-semibold py-2 px-6 rounded inline-block transition-colors">
                 Donate Today
               </Link>
             </div>
@@ -75,12 +75,12 @@ export function Footer() {
               <h3 className="font-bold text-card-foreground mb-4">Quick Links</h3>
               <ul className="space-y-2 text-sm">
                 <li>
-                  <Link href="/about" className="text-muted-foreground hover:text-foreground transition-colors">
+                  <Link prefetch={true} href="/about" className="text-muted-foreground hover:text-foreground transition-colors">
                     About Us
                   </Link>
                 </li>
                 <li>
-                  <Link href="/programs" className="text-muted-foreground hover:text-foreground transition-colors">
+                  <Link prefetch={true} href="/programs" className="text-muted-foreground hover:text-foreground transition-colors">
                     Our Programs
                   </Link>
                 </li>
@@ -92,22 +92,22 @@ export function Footer() {
               <h3 className="font-bold text-card-foreground mb-4">Our Programs</h3>
               <ul className="space-y-2 text-sm">
                 <li>
-                  <Link href="/programs/food-security" className="text-muted-foreground hover:text-foreground transition-colors">
+                  <Link prefetch={true} href="/programs/food-security" className="text-muted-foreground hover:text-foreground transition-colors">
                     Food Security & Climate
                   </Link>
                 </li>
                 <li>
-                  <Link href="/programs/health" className="text-muted-foreground hover:text-foreground transition-colors">
+                  <Link prefetch={true} href="/programs/health" className="text-muted-foreground hover:text-foreground transition-colors">
                     Community Health
                   </Link>
                 </li>
                 <li>
-                  <Link href="/programs/education" className="text-muted-foreground hover:text-foreground transition-colors">
+                  <Link prefetch={true} href="/programs/education" className="text-muted-foreground hover:text-foreground transition-colors">
                     Education & Skills
                   </Link>
                 </li>
                 <li>
-                  <Link href="/programs/gbv" className="text-muted-foreground hover:text-foreground transition-colors">
+                  <Link prefetch={true} href="/programs/gbv" className="text-muted-foreground hover:text-foreground transition-colors">
                     GBV Response
                   </Link>
                 </li>
@@ -119,17 +119,17 @@ export function Footer() {
               <h3 className="font-bold text-card-foreground mb-4">Resources</h3>
               <ul className="space-y-2 text-sm">
                 <li>
-                  <Link href="/projects" className="text-muted-foreground hover:text-foreground transition-colors">
+                  <Link prefetch={true} href="/projects" className="text-muted-foreground hover:text-foreground transition-colors">
                     Project & Impact
                   </Link>
                 </li>
                 <li>
-                  <Link href="/transparency" className="text-muted-foreground hover:text-foreground transition-colors">
+                  <Link prefetch={true} href="/transparency" className="text-muted-foreground hover:text-foreground transition-colors">
                     Transparency
                   </Link>
                 </li>
                 <li>
-                  <Link href="/contact" className="text-muted-foreground hover:text-foreground transition-colors">
+                  <Link prefetch={true} href="/contact" className="text-muted-foreground hover:text-foreground transition-colors">
                     Contact
                   </Link>
                 </li>

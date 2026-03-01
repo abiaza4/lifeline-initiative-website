@@ -69,6 +69,7 @@ export function Header() {
               <Link
                 key={link.href}
                 href={link.href}
+                prefetch={true}
                 className={`text-sm font-medium transition-colors ${
                   isActive(link.href)
                     ? 'text-primary border-b-2 border-primary pb-1'
