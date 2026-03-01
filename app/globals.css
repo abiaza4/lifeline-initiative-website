@@ -153,12 +153,7 @@ main {
   }
 }
 
-@layer utilities {
-  /* Fast transitions for navigation */
-  .transition-fast {
-    @apply transition-colors duration-150;
-  }
-
+@layer base {
   /* Optimize for reduced motion */
   @media (prefers-reduced-motion: reduce) {
     * {
@@ -168,18 +163,13 @@ main {
     }
   }
 
-  /* GPU acceleration for smooth scrolling */
-  .scroll-smooth {
-    scroll-behavior: smooth;
-  }
-
   /* Fast link transitions */
   a {
-    @apply transition-fast;
+    @apply transition-colors duration-150;
   }
 
   /* Fast button transitions */
   button {
-    @apply transition-fast;
+    @apply transition-colors duration-150;
   }
 }
