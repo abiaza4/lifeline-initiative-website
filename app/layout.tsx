@@ -5,6 +5,7 @@ import { Header } from '@/components/header'
 import { Footer } from '@/components/footer'
 import { BackToTop } from '@/components/back-to-top'
 import { ThemeProvider } from '@/components/theme-provider'
+import { AuthProvider } from '@/lib/auth-context'
 import './globals.css'
 
 const _geist = Geist({ subsets: ["latin"] });
@@ -41,15 +42,17 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className="font-sans antialiased flex flex-col min-h-screen">
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <Header />
-          <main className="flex-1">
-            {children}
-          </main>
-          <Footer />
-          <BackToTop />
-          <Analytics />
-        </ThemeProvider>
+        <AuthProvider>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            <Header />
+            <main className="flex-1">
+              {children}
+            </main>
+            <Footer />
+            <BackToTop />
+            <Analytics />
+          </ThemeProvider>
+        </AuthProvider>
       </body>
     </html>
   )
