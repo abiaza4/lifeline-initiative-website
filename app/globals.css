@@ -151,9 +151,7 @@ main {
   body {
     @apply bg-background text-foreground;
   }
-}
 
-@layer base {
   /* Optimize for reduced motion */
   @media (prefers-reduced-motion: reduce) {
     * {
@@ -163,13 +161,12 @@ main {
     }
   }
 
-  /* Fast link transitions */
+  /* Fast link and button transitions */
   a {
-    @apply transition-colors duration-150;
+    transition: color 150ms ease-in-out;
   }
 
-  /* Fast button transitions */
   button {
-    @apply transition-colors duration-150;
+    transition: all 150ms ease-in-out;
   }
 }
