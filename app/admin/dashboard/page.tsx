@@ -1,6 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { useAuth } from '@/lib/auth-context';
 import { getAllData } from '@/lib/admin-data';
 import Link from 'next/link';
 import {
@@ -23,6 +25,8 @@ interface DashboardStats {
 }
 
 export default function AdminDashboard() {
+  const router = useRouter();
+  const { isAuthenticated } = useAuth();
   const [stats, setStats] = useState<DashboardStats>({
     programs: 0,
     articles: 0,
@@ -31,8 +35,15 @@ export default function AdminDashboard() {
     submissions: 0,
     totalDonated: 0,
   });
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
+    if (!isAuthenticated) {
+      router.replace('/admin/login');
+      return;
+    }
+    
     const data = getAllData();
     const totalDonated = data.donations.reduce((sum, d) => sum + d.amount, 0);
 
@@ -44,7 +55,11 @@ export default function AdminDashboard() {
       submissions: data.formSubmissions.filter((s) => s.status === 'new').length,
       totalDonated,
     });
-  }, []);
+  }, [isAuthenticated, router]);
+
+  if (!mounted || !isAuthenticated) {
+    return null;
+  }
 
   const statCards = [
     {

@@ -20,21 +20,27 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState<{ email: string } | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
     // Check if there's a valid session
-    const session = localStorage.getItem(SESSION_KEY);
-    if (session) {
-      try {
-        const parsed = JSON.parse(session);
-        if (parsed.expiry > Date.now()) {
-          setIsAuthenticated(true);
-          setUser({ email: parsed.email });
-        } else {
+    if (typeof window !== 'undefined') {
+      const session = localStorage.getItem(SESSION_KEY);
+      if (session) {
+        try {
+          const parsed = JSON.parse(session);
+          if (parsed.expiry > Date.now()) {
+            setIsAuthenticated(true);
+            setUser({ email: parsed.email });
+          } else {
+            localStorage.removeItem(SESSION_KEY);
+            setIsAuthenticated(false);
+          }
+        } catch (error) {
           localStorage.removeItem(SESSION_KEY);
+          setIsAuthenticated(false);
         }
-      } catch (error) {
-        localStorage.removeItem(SESSION_KEY);
       }
     }
     setIsLoading(false);
@@ -46,7 +52,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         email,
         expiry: Date.now() + SESSION_EXPIRY,
       };
-      localStorage.setItem(SESSION_KEY, JSON.stringify(session));
+      if (typeof window !== 'undefined') {
+        localStorage.setItem(SESSION_KEY, JSON.stringify(session));
+      }
       setIsAuthenticated(true);
       setUser({ email });
       return true;
@@ -55,13 +63,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   };
 
   const logout = () => {
-    localStorage.removeItem(SESSION_KEY);
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem(SESSION_KEY);
+    }
     setIsAuthenticated(false);
     setUser(null);
   };
 
-  if (isLoading) {
-    return <div className="flex items-center justify-center min-h-screen">Loading...</div>;
+  if (isLoading || !mounted) {
+    return <div className="flex items-center justify-center min-h-screen bg-background text-foreground">Loading...</div>;
   }
 
   return (

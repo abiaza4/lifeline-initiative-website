@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/lib/auth-context';
 import Image from 'next/image';
@@ -13,9 +13,20 @@ export default function AdminLoginPage() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    if (isAuthenticated) {
+      router.replace('/admin/dashboard');
+    }
+  }, [isAuthenticated, router]);
+
+  if (!mounted) {
+    return null;
+  }
 
   if (isAuthenticated) {
-    router.push('/admin/dashboard');
     return null;
   }
 
@@ -27,13 +38,15 @@ export default function AdminLoginPage() {
     try {
       const success = login(email, password);
       if (success) {
-        router.push('/admin/dashboard');
+        setTimeout(() => {
+          router.replace('/admin/dashboard');
+        }, 100);
       } else {
         setError('Invalid email or password');
+        setIsLoading(false);
       }
     } catch (err) {
       setError('An error occurred. Please try again.');
-    } finally {
       setIsLoading(false);
     }
   };
