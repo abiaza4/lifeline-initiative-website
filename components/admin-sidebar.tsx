@@ -14,6 +14,7 @@ import {
   LogOut,
   Menu,
   X,
+  Image as ImageIcon,
 } from 'lucide-react';
 import { useState } from 'react';
 import Image from 'next/image';
@@ -22,6 +23,7 @@ const navItems = [
   { label: 'Dashboard', href: '/admin/dashboard', icon: LayoutDashboard },
   { label: 'Programs', href: '/admin/programs', icon: BookOpen },
   { label: 'News Articles', href: '/admin/news', icon: FileText },
+  { label: 'Image Gallery', href: '/admin/gallery', icon: ImageIcon },
   { label: 'Team Members', href: '/admin/team', icon: Users },
   { label: 'Donations', href: '/admin/donations', icon: Heart },
   { label: 'Form Submissions', href: '/admin/submissions', icon: MessageSquare },
